@@ -57,4 +57,13 @@ public class ListaProfesores {
         }
 
     }
+
+    public void leerPofesores(){
+	/*
+	 * Lee los datos desde un archivo de texto, crear objetos 'Profesor'
+	 * y los almacena en 'lista'
+	 */
+	// Examen002: Completar este metodo
+
+    }
 }
