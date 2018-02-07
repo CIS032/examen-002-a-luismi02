@@ -5,7 +5,9 @@
  */
 package datos;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class ListaProfesores {
 
-    ArrayList<Profesor> lista = new ArrayList<>();
+    static ArrayList<Profesor> lista = new ArrayList<>();
 
     public void agregar(Profesor profe) {
         lista.add(profe);
@@ -33,12 +35,12 @@ public class ListaProfesores {
         return out;
     }
 
-    public void grabar() {
+    public static void grabar() {
         try {
-            PrintWriter pw = new PrintWriter(new FileWriter(new File("ListaDocentes.csv"), true));
+            PrintWriter pw = new PrintWriter(new FileWriter(new File("C:\\Users\\Usuario\\Documents\\ExamenProgramacion2/Docentes.csv"), true));
             //pw.println("CEDULA;NOMBRES;APELLIDOS;TIPO PROFESOR;HORAS CLASE;HORAS COMPLEMENTARIAS");
             for (Profesor profesor : lista) {
-                String out = profesor.getCedula() + ";" + profesor.getNombres() + ";" + profesor.getApellidos() + ";";
+                String out = profesor.getCedula() + "    " + profesor.getNombres() + " " + profesor.getApellidos() + ";";
                 if (profesor instanceof ProfesorTiempoCompleto) {
                     out += "Exclusiva";
                 }
@@ -57,6 +59,32 @@ public class ListaProfesores {
         }
 
     }
+    
+    
+     public static String leer(){
+        BufferedReader leer = null;
+        String datos ="";
+        String tiempoCompleto="";
+        String medioTiempo="";
+        String tiempoParcial="";
+        
+        
+        try {
+            FileReader f = new FileReader("C:\\Users\\Usuario\\Documents\\ExamenProgramacion2/Docentes.csv");
+            leer = new BufferedReader(f);
+             String linea;
+            while ((linea = leer.readLine()) != null) {
+              datos = datos + linea + "\n";
+              
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error en la lectura del archivo");
+        }
+       return datos;
+    }
+    
+        
 
     public void leerPofesores(){
 	/*
